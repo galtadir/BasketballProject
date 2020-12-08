@@ -14,6 +14,14 @@ class WikiPage:
         self.high_school=""
         self.college=""
 
+
+    def check_url(self):
+        try:
+            page = urlopen(self.url)
+            return True
+        except:
+            return False
+
     def init_detail(self):
         page = urlopen(self.url)
         soup = BeautifulSoup(page)
@@ -96,7 +104,9 @@ class WikiPage:
                     # print(ul)
 
         self.dict_by_year = sorted(self.dict_by_year.items(), key=lambda t: t[0])
-        print(self.dict_by_year)
+
+    def getDictByYear(self):
+        return self.dict_by_year
 
 
         # self.photo_url= table.find('img').get('src')
@@ -119,6 +129,7 @@ class WikiPage:
 
 
 
-lebron = WikiPage("https://en.wikipedia.org/wiki/Dennis_Rodman")
-lebron.init_detail()
+# lebron = WikiPage("https://en.wikipedia.org/wiki/lebron_james")
+# lebron.init_detail()
+# print(lebron.dict_by_year)
 # lebron.print()
