@@ -51,13 +51,11 @@ class MyGrid(Screen,RelativeLayout):
             if page.check_url():
                 page.init_detail()
                 print(page.getDictByYear())
-                sm.switch_to(TimeLine)
+                self.parent.current = "TimeLine"
             else:
                 print("wrong")
 
-sm = ScreenManager()
-sm.add_widget(MyGrid(name="search"))
-sm.add_widget(TimeLine(name="time_line"))
+
 
 
 class Fronted(App):
