@@ -55,10 +55,10 @@ class SearchWindow(Screen,RelativeLayout):
                     self.manager.get_screen("player").update_details()
                     self.manager.get_screen('time_line').player_dict = page.dict_by_year
                     self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
-                    self.manager.get_screen('time_line').prev_year = "start"
+                    self.manager.get_screen('time_line').prev_year = "Back To Player Page"
                     self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
                     self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
-                    self.manager.get_screen('time_line').player_name = page.name
+                    self.manager.get_screen('time_line').player_name = page.name + " TimeLine"
                     self.manager.get_screen('time_line').index = 0
                     self.manager.get_screen('time_line').insert_current_year()
                     self.manager.current = "player"
@@ -136,6 +136,8 @@ class TimeLineScreen(Screen,Widget):
     keys =  ListProperty([])
     index = 0
 
+
+
     def btn(self):
         print(self.player_dict)
         print(self.keys)
@@ -150,10 +152,12 @@ class TimeLineScreen(Screen,Widget):
             self.next_year = self.curr_year
             self.curr_year = self.prev_year
             if self.index==0:
-                self.prev_year = "start"
+                self.prev_year = "Back To Player Page"
             else:
                 self.prev_year = self.keys[self.index-1]
             self.insert_current_year()
+        else:
+            self.manager.current = 'player'
 
     def next_btn(self):
         if not self.index==len(self.keys)-1:
@@ -161,10 +165,12 @@ class TimeLineScreen(Screen,Widget):
             self.prev_year = self.curr_year
             self.curr_year = self.next_year
             if self.index==len(self.keys)-1:
-                self.next_year = "end"
+                self.next_year = "Back To Search"
             else:
                 self.next_year= self.keys[self.index+1]
             self.insert_current_year()
+        else:
+            self.manager.current = 'search'
 
     def insert_current_year(self):
         grid = self.ids.grid
@@ -235,12 +241,26 @@ class TimeLineScreen(Screen,Widget):
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
             for_time_line = achievement.rstrip()
+            if len(for_time_line)>25:
+                lst = for_time_line.split(" ")
+                for_time_line = lst[0]
+                found = False
+                for i in lst[1:]:
+                    if len(for_time_line)<25 and not found:
+                        for_time_line = for_time_line+" "+i
+                    else:
+                        if not found:
+                            found = True
+                            for_time_line = for_time_line + "\n"
+                        for_time_line = for_time_line+i
             new_grid = GridLayout(cols=1)
             new_grid.add_widget(Label(text = for_time_line, bold=True))
             if for_time_line in photo_dict.keys():
                 new_grid.add_widget(Image(source=photo_dict[for_time_line]))
-            if "Selected by the" in for_time_line:
+            elif "Selected by the" in for_time_line:
                 new_grid.add_widget(Image(source="nbadraftlogo.png"))
+            else:
+                new_grid.add_widget(Image(source="NBA.jpg"))
             # new_grid.add_widget(Image(source="atl.png"))
             self.ids.grid.add_widget(new_grid)
             # self.ids.grid.add_widget(Label(text = achievement))
