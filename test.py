@@ -110,23 +110,7 @@ class PlayerScreen(Screen,GridLayout):
         # print(self.manager.page.dict_by_year)
         # self.manager.current='search'
 
-class LineEllipse1:
-    pass
-class ClockRect(Widget):
-    velocity = ListProperty([10, 15])
 
-    def __init__(self, **kwargs):
-        super(ClockRect, self).__init__(**kwargs)
-        Clock.schedule_interval(self.update, 1 / 60.)
-
-    def update(self, *args):
-        self.x += self.velocity[0]
-        self.y += self.velocity[1]
-
-        if self.x < 0 or (self.x + self.width) > Window.width:
-            self.velocity[0] *= -1
-        if self.y < 0 or (self.y + self.height) > Window.height:
-            self.velocity[1] *= -1
 class TimeLineScreen(Screen,Widget):
     player_name=StringProperty("")
     player_dict =DictProperty({})
