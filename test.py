@@ -15,6 +15,7 @@ from kivy.animation import Animation,AnimationTransition
 from kivy.clock import Clock
 from kivy.properties import ListProperty
 from kivy.core.window import Window
+from  kivy.uix.image import Image
 
 
 import WikiPage
@@ -165,6 +166,19 @@ class TimeLineScreen(Screen,Widget):
             self.insert_current_year()
 
     def insert_current_year(self):
+        grid = self.ids.grid
+        grid.clear_widgets()
+
+
+
+
+        achievements = self.player_dict[self.curr_year]
+        for achievement in achievements:
+            new_grid = GridLayout(cols=1)
+            new_grid.add_widget(Label(text = achievement, bold=True))
+            new_grid.add_widget(Image(source="atl.png"))
+            self.ids.grid.add_widget(new_grid)
+            # self.ids.grid.add_widget(Label(text = achievement))
 
 
 
@@ -173,18 +187,17 @@ class TimeLineScreen(Screen,Widget):
         #     Color(1., 0, 0)
         #
         #     # Add a rectangle
-        rec=Rectangle(pos=(10, 10), size=(500, 500))
+        # rec=Rectangle(pos=(10, 10), size=(500, 500))
         #
         #     Line(pos=(10, 10), size=(500, 500))
-        self.ids.grid.clear_widgets()
         # label = Label(text=self.curr_year,pos_hint={'top':1.0, 'right':.7})
         # self.ids.grid.add_widget(label)
         # print(self.curr_year)
         # grid = GridLayout()
         # grid.add_widget(ClockRect())
-        clock=LineEllipse1()
-        anim = Animation(pos=(100,100),duration=5)
-        anim.start(clock)
+        # clock=LineEllipse1()
+        # anim = Animation(pos=(100,100),duration=5)
+        # anim.start(clock)
         # self.ids.grid.add_widget(anim)
 
         # self.ig = InstructionGroup()
@@ -192,10 +205,7 @@ class TimeLineScreen(Screen,Widget):
         # self.ig.add(self.line)
         # self.canvas.add(self.ig)
 
-        achievements = self.player_dict[self.curr_year]
-        for achievement in achievements:
-            label = Label(text = achievement)
-            self.ids.grid.add_widget(label)
+
 
 
 class Manager(ScreenManager):
