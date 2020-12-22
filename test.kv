@@ -21,25 +21,229 @@
                 color: 1, .8, .4, .85
 
         GridLayout:
-            cols: 2
-            size: 50, 50
+            cols: 5
+            # size: 50, 50
             row_force_default: True
             row_default_height: 50
-            col_force_default: True
-            col_default_width: 600
+            # col_force_default: True
+            # col_default_width: 600
 
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
             Label:
 
             Label:
-
-            Label:
-
-            Label:
-
-            Label:
-                text: "Player first name: "
+                text: "Search By Player Name"
                 bold: True
                 font_size: '20sp'
+
+            Label:
+
+            Label:
+                text: "Search By Wiki Url"
+                bold: True
+                font_size: '20sp'
+
+            Label:
+
+            Label:
+                text: "Select From List"
+                bold: True
+                font_size: '20sp'
+
+            Label:
+                text: "Player First Name"
+                # bold: True
+                # font_size: '15sp'
+
+            Label:
+
+            Label:
+                text: "Url"
+                # bold: True
+                # font_size: '15sp'
+
+            Label:
+
+            GridLayout:
+                cols: 2
+                # size: 50, 50
+                row_force_default: True
+                row_default_height: 50
+                # col_force_default: True
+                # col_default_width: 600
+
+                Label:
+                    text: "Lebron James"
+                CheckBox:
+                    id: Lebron_James
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text="Lebron"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text="James"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Kevin Durant"
+                CheckBox:
+                    id: Kevin_Durant
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text="Kevin"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text="Durant"
+                        Lebron_James.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Steph Curry"
+                CheckBox:
+                    id: Steph_Curry
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "Steph"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Curry"
+                        Kevin_Durant.active = False
+                        Lebron_James.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "James Harden"
+                CheckBox:
+                    id: James_Harden
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "James"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Harden"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        Lebron_James.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Omri Casspi"
+                CheckBox:
+                    id: Omri_Casspi
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "Omri"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Casspi"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Lebron_James.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Deni Avdija"
+                CheckBox:
+                    id: Deni_Avdija
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "Deni"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Avdija"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Lebron_James.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Giannis Antetokounmpo"
+                CheckBox:
+                    id: Giannis_Antetokounmpo
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "Giannis"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Antetokounmpo"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Lebron_James.active = False
+                        Damian_Lillard.active = False
+
+                Label:
+                    text: "Damian Lillard"
+                CheckBox:
+                    id: Damian_Lillard
+                    on_press:
+                        # search_by_url.disabled = not search_by_url.disabled
+                        search_by_url.text = ""
+                        # search_by_name_first.disabled = not search_by_name_first.disabled
+                        search_by_name_first.text = "Damian"
+                        # search_by_name_last.disabled = not search_by_name_last.disabled
+                        search_by_name_last.text = "Lillard"
+                        Kevin_Durant.active = False
+                        Steph_Curry.active = False
+                        James_Harden.active = False
+                        Omri_Casspi.active = False
+                        Deni_Avdija.active = False
+                        Giannis_Antetokounmpo.active = False
+                        Lebron_James.active = False
+
+
+
+                    # on_release: root.select('item1')
+                # Label:
+                #     text: 'Unselectable item'
+                #     size_hint_y: None
+                #     height: 44
+                # Button:
+                #     text: 'My second Item'
+                #     size_hint_y: None
+                #     height: 44
+                #     on_release: root.select('item2')
 
             TextInput:
                 id: search_by_name_first
@@ -47,33 +251,78 @@
 
             Label:
 
+            TextInput:
+                id: search_by_url
+                multilines: False
+
             Label:
 
             Label:
-                text: "Player last name: "
-                bold: True
-                font_size: '20sp'
+
+            Label:
+                text: "Player Last Name"
+                # bold: True
+                # font_size: '15sp'
+
+            Label:
+
+            Label:
+
+            Label:
+
+            Label:
 
             TextInput:
                 id: search_by_name_last
                 multilines: False
 
-            Label:
 
-            Label:
-
-            Label:
-
-            Label:
-
-            Label:
-                text: "Wiki player url: "
-                bold: True
-                font_size: '20sp'
-
-            TextInput:
-                id: search_by_url
-                multilines: False
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #     text: "Player first name: "
+            #     bold: True
+            #     font_size: '20sp'
+            #
+            # TextInput:
+            #     id: search_by_name_first
+            #     multilines: False
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #     text: "Player last name: "
+            #     bold: True
+            #     font_size: '20sp'
+            #
+            # TextInput:
+            #     id: search_by_name_last
+            #     multilines: False
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #
+            # Label:
+            #     text: "Wiki player url: "
+            #     bold: True
+            #     font_size: '20sp'
+            #
+            # TextInput:
+            #     id: search_by_url
+            #     multilines: False
 
         Button:
             text: "[i]Search![/i]"
@@ -84,7 +333,16 @@
             markup: True
             border: 25, 25, 25, 25
             bold: True
-            on_press: root.btn()
+            on_press:
+                Lebron_James.active = False
+                Kevin_Durant.active = False
+                Steph_Curry.active = False
+                James_Harden.active = False
+                Omri_Casspi.active = False
+                Deni_Avdija.active = False
+                Giannis_Antetokounmpo.active = False
+                Damian_Lillard.active = False
+                root.btn()
 
 <PlayerScreen>:
     canvas.before:
