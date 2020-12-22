@@ -7,6 +7,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
 
 import WikiPage
 
@@ -21,6 +23,12 @@ class SearchWindow(Screen,RelativeLayout):
 
     # button for getting the recommendetions
     def btn(self):
+        close_button = Button(text="close")
+        layout = GridLayout(cols=1)
+
+
+
+
         url = ""
         if self.search_by_url.text != "":
             url = self.search_by_url.text
@@ -33,18 +41,35 @@ class SearchWindow(Screen,RelativeLayout):
         if url != "":
             page = WikiPage.WikiPage(url)
             if page.check_url():
-                page.init_detail()
-                self.manager.page = page
-                self.manager.get_screen("player").update_details()
-                self.manager.get_screen('time_line').player_dict = page.dict_by_year
-                self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
-                self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
-                self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
-                self.manager.get_screen('time_line').index = 0
-                self.manager.get_screen('time_line').insert_current_year()
-                self.manager.current = "player"
+                try:
+                    page.init_detail()
+                    self.manager.page = page
+                    self.manager.get_screen("player").update_details()
+                    self.manager.get_screen('time_line').player_dict = page.dict_by_year
+                    self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
+                    self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
+                    self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
+                    self.manager.get_screen('time_line').index = 0
+                    self.manager.get_screen('time_line').insert_current_year()
+                    self.manager.current = "player"
+                except:
+                    layout.add_widget(Label(text='Player Not Found'))
+                    layout.add_widget(close_button)
+                    popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
+                    popup.open()
+                    close_button.bind(on_press=popup.dismiss)
             else:
-                print("wrong")
+                layout.add_widget(Label(text='Player Not Found'))
+                layout.add_widget(close_button)
+                popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
+                popup.open()
+                close_button.bind(on_press=popup.dismiss)
+        else:
+            layout.add_widget(Label(text='Please Enter Valid Input'))
+            layout.add_widget(close_button)
+            popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
+            popup.open()
+            close_button.bind(on_press=popup.dismiss)
 
 
 
