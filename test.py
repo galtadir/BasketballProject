@@ -15,7 +15,7 @@ from kivy.animation import Animation,AnimationTransition
 from kivy.clock import Clock
 from kivy.properties import ListProperty
 from kivy.core.window import Window
-from  kivy.uix.image import Image
+from kivy.uix.image import Image
 
 
 import WikiPage
