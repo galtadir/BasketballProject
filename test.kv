@@ -98,6 +98,7 @@
         RelativeLayout:
             Label:
                 text:root.player_name
+                bold: True
                 markup: True
                 size_hint: .20, .10
                 pos_hint: {'top': 1.0, 'right': .6}
@@ -111,12 +112,12 @@
         RelativeLayout:
             size: 50, 50
             GridLayout:
-                cols: 2
+                cols: 6
                 size: 50, 50
                 row_force_default: True
                 row_default_height: 50
                 col_force_default: True
-                col_default_width: 350
+                col_default_width: 200
 
                 Label:
                 Label:
@@ -124,7 +125,14 @@
                 Label:
                 Label:
                 Label:
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
 
+                Label:
                 Label:
                     text: "Born in: "
                     bold: True
@@ -135,10 +143,19 @@
                     text: root.born_place
                     font_size: '20sp'
 
+
+                Label:
+                Label:
                 Label:
 
                 Label:
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
 
+                Label:
                 Label:
                     text: "Birth Date: "
                     bold: True
@@ -150,9 +167,17 @@
                     font_size: '20sp'
 
                 Label:
-
+                Label:
                 Label:
 
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
+
+                Label:
                 Label:
                     text: "High School: "
                     bold: True
@@ -164,9 +189,17 @@
                     font_size: '20sp'
 
                 Label:
-
+                Label:
                 Label:
 
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
+                Label:
+
+                Label:
                 Label:
                     text: "College: "
                     bold: True
@@ -175,6 +208,12 @@
                 Label:
                     text: root.college
                     font_size: '20sp'
+
+                Label:
+                Label:
+                Label:
+
+
 
 
 
@@ -186,16 +225,23 @@
                 pos_hint: {'top': 1.07,'right': 1.2}
 
 
-
-
-
-
-
+            Button:
+                text: "[i]To player Time Line![/i]"
+                size_hint: .20, .10
+                pos_hint: {'top': .2, 'right': .78}
+                font_size: '20sp'
+                background_color:1, .8, .4, .85
+                markup: True
+                background_normal: 'normal.png'
+                background_down: 'down.png'
+                border: 30, 30, 30, 30
+                bold: True
+                on_press: root.manager.current = 'time_line'
 
             Button:
                 text: "[i]Back to search window![/i]"
                 size_hint: .20, .1
-                pos_hint: {'top': .2, 'right': .78}
+                pos_hint: {'top': .2, 'right': .38}
                 font_size: '20sp'
                 background_color: 1, .8, .4, .85
                 markup: True
@@ -205,19 +251,6 @@
                 border: 30, 30, 30, 30
                 bold: True
                 on_press:  root.manager.current = 'search'
-
-            Button:
-                text: "[i]To player Time Line![/i]"
-                size_hint: .20, .10
-                pos_hint: {'top': .2, 'right': .38}
-                font_size: '20sp'
-                background_color:1, .8, .4, .85
-                markup: True
-                background_normal: 'normal.png'
-                background_down: 'down.png'
-                border: 30, 30, 30, 30
-                bold: True
-                on_press: root.manager.current = 'time_line'
 
 <TimeLineScreen>:
     canvas.before:
