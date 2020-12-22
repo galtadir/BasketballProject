@@ -18,9 +18,9 @@ from kivy.core.window import Window
 from kivy.uix.image import Image
 
 
-import WikiPage
+import Backend
 
-Builder.load_file("test.kv")
+Builder.load_file("Fronted.kv")
 
 class SearchWindow(Screen,RelativeLayout):
     search_by_url = ObjectProperty(None)
@@ -47,7 +47,7 @@ class SearchWindow(Screen,RelativeLayout):
             self.search_by_name_first.text = ""
             self.search_by_name_last.text = ""
         if url != "":
-            page = WikiPage.WikiPage(url)
+            page = Backend.WikiPage(url)
             if page.check_url():
                 try:
                     page.init_detail()
