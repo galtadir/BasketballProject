@@ -234,9 +234,7 @@ class TimeLineScreen(Screen,Widget):
 
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
-            print(achievement)
             for_time_line = achievement.rstrip()
-            print(achievement)
             new_grid = GridLayout(cols=1)
             new_grid.add_widget(Label(text = for_time_line, bold=True))
             if for_time_line in photo_dict.keys():
