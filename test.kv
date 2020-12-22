@@ -3,7 +3,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'basketball.jpg'
+            source: 'basketball2.jpg'
 
     search_by_url: search_by_url
     search_by_name_first: search_by_name_first
@@ -14,14 +14,15 @@
         size: 50, 50
         RelativeLayout:
             Label:
-                text: "Timeline of basketball players"
+                text: "Timeline basketball players"
+                bold: True
                 size_hint: .20, .10
                 pos_hint: {'top': 1.0, 'right': .6}
                 font_size: '50sp'
                 color: 1, .8, .4, .85
 
         GridLayout:
-            cols: 5
+            cols: 7
             # size: 50, 50
             row_force_default: True
             row_default_height: 50
@@ -38,26 +39,33 @@
             Label:
             Label:
             Label:
+            Label:
+            Label:
+            Label:
+            Label:
 
             Label:
-                text: "Search By Player Name"
+            Label:
+                text: "Search By Player Name:"
                 bold: True
                 font_size: '20sp'
 
             Label:
 
             Label:
-                text: "Search By Wiki Url"
+                text: "Search By Wiki Url:"
                 bold: True
                 font_size: '20sp'
 
             Label:
 
             Label:
-                text: "Select From List"
+                text: "          Select From List:                    "
                 bold: True
                 font_size: '20sp'
 
+            Label:
+            Label:
             Label:
                 text: "Player First Name"
                 # bold: True
@@ -69,6 +77,7 @@
                 text: "Url"
                 # bold: True
                 # font_size: '15sp'
+
 
             Label:
 
@@ -231,19 +240,13 @@
                         Deni_Avdija.active = False
                         Giannis_Antetokounmpo.active = False
                         Lebron_James.active = False
+            Label:
 
 
 
-                    # on_release: root.select('item1')
-                # Label:
-                #     text: 'Unselectable item'
-                #     size_hint_y: None
-                #     height: 44
-                # Button:
-                #     text: 'My second Item'
-                #     size_hint_y: None
-                #     height: 44
-                #     on_release: root.select('item2')
+
+
+            Label:
 
             TextInput:
                 id: search_by_name_first
@@ -254,6 +257,10 @@
             TextInput:
                 id: search_by_url
                 multilines: False
+
+            Label:
+
+            Label:
 
             Label:
 
@@ -271,65 +278,25 @@
             Label:
 
             Label:
-
+            Label:
+            Label:
             TextInput:
                 id: search_by_name_last
                 multilines: False
 
 
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #     text: "Player first name: "
-            #     bold: True
-            #     font_size: '20sp'
-            #
-            # TextInput:
-            #     id: search_by_name_first
-            #     multilines: False
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #     text: "Player last name: "
-            #     bold: True
-            #     font_size: '20sp'
-            #
-            # TextInput:
-            #     id: search_by_name_last
-            #     multilines: False
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #
-            # Label:
-            #     text: "Wiki player url: "
-            #     bold: True
-            #     font_size: '20sp'
-            #
-            # TextInput:
-            #     id: search_by_url
-            #     multilines: False
+
 
         Button:
             text: "[i]Search![/i]"
-            size_hint: .20, .10
-            pos_hint: {'top': .3, 'right': .6}
+            size_hint: .35, .10
+            pos_hint: {'top': .2, 'right': .65}
             font_size: '20sp'
             background_color: 1, .3, .4, .85
+            background_normal: 'normal.png'
+            background_down: 'down.png'
+            background_color: 1, .8, .4, .85
+
             markup: True
             border: 25, 25, 25, 25
             bold: True
@@ -349,7 +316,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'basketball2.jpg'
+            source: 'basketball3.jpg'
     RelativeLayout:
         cols:1
         size: 50, 50
@@ -573,47 +540,68 @@
         GridLayout:
             id: grid
             cols: 3
-            # row_force_default: True
-            # row_default_height: 50
-            # col_force_default: True
-            # col_default_width: 200
-            size_hint_y: 0.70
+            col_force_default: True
+            col_default_width: 450
+
+            #row_force_default: True
+            #row_default_height: 95
 
 
 
-        GridLayout:
-            cols: 2
-            size_hint_y: 0.10
-            # row_force_default: True
-            # height: 40
 
+
+
+        RelativeLayout:
+
+            Label:
+                text:"Previous year"
+                bold: True
+                markup: True
+                pos_hint: {'top': .15, 'right': .4}
+                font_size: '20sp'
+                color: 1, .8, .4, .85
             Button:
                 text: root.prev_year
                 size_hint: .20, .10
-                pos_hint: {'top': .3, 'right': .6}
+                pos_hint: {'top': .15, 'right': .4}
                 font_size: '20sp'
-                background_color: 1, .3, .4, .85
+                background_normal: 'normal.png'
+                background_color: 1, .8, .4, .85
+
                 markup: True
                 bold: True
                 on_press: root.prev_btn()
 
+            Label:
+                text:"Next year"
+                bold: True
+                markup: True
+                pos_hint: {'top': .15, 'right': .8}
+                font_size: '20sp'
+                color: 1, .8, .4, .85
+
             Button:
                 text: root.next_year
-                size_hint: .20, .10
-                pos_hint: {'top': .3, 'right': .6}
+                size_hint: .20, .1
+                pos_hint: {'top': .15, 'right': .8}
                 font_size: '20sp'
-                background_color: 1, .3, .4, .85
+                background_normal: 'normal.png'
+                background_color: 1, .8, .4, .85
                 markup: True
                 bold: True
                 on_press: root.next_btn()
         Button:
-            text: "[i]Back to search window![/i]"
-            size_hint: .20, .10
-            pos_hint: {'top': .3, 'right': .6}
-            font_size: '20sp'
-            background_color: 1, .3, .4, .85
-            markup: True
+            text: "Back to search"
+            size_hint: .12, .10
+            border : 0.4, 0.4,0.4, 0.4
+            background_normal: 'normal.png'
+            background_down: 'search.png'
+            background_color: 1, .8, .4, .85
+            pos_hint: {'top': 1., 'right': 1.}
+            font_size: '15sp'
             bold: True
             on_press:  root.manager.current = 'search'
+
+
 
 
