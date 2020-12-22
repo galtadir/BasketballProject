@@ -110,7 +110,23 @@ class PlayerScreen(Screen,GridLayout):
         # print(self.manager.page.dict_by_year)
         # self.manager.current='search'
 
+class LineEllipse1:
+    pass
+class ClockRect(Widget):
+    velocity = ListProperty([10, 15])
 
+    def __init__(self, **kwargs):
+        super(ClockRect, self).__init__(**kwargs)
+        Clock.schedule_interval(self.update, 1 / 60.)
+
+    def update(self, *args):
+        self.x += self.velocity[0]
+        self.y += self.velocity[1]
+
+        if self.x < 0 or (self.x + self.width) > Window.width:
+            self.velocity[0] *= -1
+        if self.y < 0 or (self.y + self.height) > Window.height:
+            self.velocity[1] *= -1
 class TimeLineScreen(Screen,Widget):
     player_name=StringProperty("")
     player_dict =DictProperty({})
@@ -153,6 +169,56 @@ class TimeLineScreen(Screen,Widget):
     def insert_current_year(self):
         grid = self.ids.grid
         grid.clear_widgets()
+        photo_dict={}
+        photo_dict["50–40–90 club"] = "50–40–90 club.jpg"
+        photo_dict["All-NBA First Team"] = "All-NBA First Team.jpg"
+        photo_dict["All-NBA Second Team"] = "All-NBA Second Team .png"
+        photo_dict["Arrived to Atlanta Hawks"] = "atl.png"
+        photo_dict["Arrived to Brooklyn Nets"] = "bkn.png"
+        photo_dict["Arrived to Boston Celtics"] = "bos.png"
+        photo_dict["Arrived to Charlotte Hornets"] = "cha.png"
+        photo_dict["Arrived to Chicago Bulls"] = "chi.png"
+        photo_dict["Arrived to Cleveland Cavaliers"] = "cle.png"
+        photo_dict["Arrived to Dallas Mavericks"] = "dal.png"
+        photo_dict["Arrived to Denver Nuggets"] = "den.png"
+        photo_dict["Arrived to Golden State Warriors"] = "gs.png"
+        photo_dict["Arrived to Detroit Pistons"] = "det.png"
+        photo_dict["Arrived to Houston Rockets"] = "hou.png"
+        photo_dict["Arrived to Indiana Pacers"] = "ind.png"
+        photo_dict["Arrived to Los Angeles Clippers"] = "lac.png"
+        photo_dict["Arrived to Los Angeles Lakers"] = "lal.png"
+        photo_dict["Arrived to Memphis Grizzlies"] = "mem.png"
+        photo_dict["Arrived to Miami Heat"] = "mia.png"
+        photo_dict["Arrived to Milwaukee Bucks"] = "mil.png"
+        photo_dict["Arrived to Minnesota Timberwolves"] = "min.png"
+        photo_dict["Arrived to New Orleans Pelicans"] = "no.png"
+        photo_dict["Arrived to New York Knicks"] = "ny.png"
+        photo_dict["Arrived to Oklahoma City Thunder"] = "okc.png"
+        photo_dict["Arrived to Orlando Magic"] = "orl.png"
+        photo_dict["Arrived to Philadelphia 76ers"] = "phi.png"
+        photo_dict["Arrived to Phoenix Suns"] = "phx.png"
+        photo_dict["Arrived to Portland Trail Blazers"] = "por.png"
+        photo_dict["Arrived to San Antonio Spurs"] = "sa.png"
+        photo_dict["Arrived to Sacramento Kings"] = "sac.png"
+        photo_dict["Arrived to Toronto Raptors"] = "tor.png"
+        photo_dict["Arrived to Utah Jazz"] = "utah.png"
+        photo_dict["Arrived to Washington Wizards"] = "wsh.png"
+
+        photo_dict["NBA All-Defensive First Team"] = "NBA All-Defensive First Team.jpg"
+        photo_dict["NBA All-Defensive Second Team"] = "NBA All-Defensive Second Team.jpg"
+        photo_dict["NBA All-Rookie First Team"] = "NBA All-Rookie First Team.jpg"
+        photo_dict["NBA All-Star"] = "NBA All-Star.png"
+        photo_dict["NBA assists leader"] = "NBA assists leader.jpg"
+        photo_dict["McDonald's All-American Game MVP"] = "NBA Most Valuable Player.jpg"
+        photo_dict["NBA All-Star Game MVP"] = "NBA Most Valuable Player.jpg"
+        photo_dict["NBA Finals MVP"] = "NBA Most Valuable Player.jpg"
+        photo_dict["NBA Most Valuable Player"] = "NBA Most Valuable Player.jpg"
+        photo_dict["NBA Rookie of the Year"] = "NBA Rookie of the Year.jpg"
+        photo_dict["NBA steals leader"] = "NBA steals leader.jpg"
+
+
+
+
         label1 = Label()
         self.ids.grid.add_widget(label1)
         label2 = Label()
@@ -168,9 +234,16 @@ class TimeLineScreen(Screen,Widget):
 
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
+            print(achievement)
+            for_time_line = achievement.rstrip()
+            print(achievement)
             new_grid = GridLayout(cols=1)
-            new_grid.add_widget(Label(text = achievement, bold=True))
-            new_grid.add_widget(Image(source="por.png"))
+            new_grid.add_widget(Label(text = for_time_line, bold=True))
+            if for_time_line in photo_dict.keys():
+                new_grid.add_widget(Image(source=photo_dict[for_time_line]))
+            if "Selected by the" in for_time_line:
+                new_grid.add_widget(Image(source="nbadraftlogo.png"))
+            # new_grid.add_widget(Image(source="atl.png"))
             self.ids.grid.add_widget(new_grid)
             # self.ids.grid.add_widget(Label(text = achievement))
 
