@@ -16,6 +16,7 @@ from kivy.clock import Clock
 from kivy.properties import ListProperty
 from kivy.core.window import Window
 
+
 import WikiPage
 
 Builder.load_file("test.kv")
