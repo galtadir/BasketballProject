@@ -452,7 +452,7 @@
 
 
             Button:
-                text: "[i]To player Time Line![/i]"
+                text: "[i]To Player TimeLine![/i]"
                 size_hint: .20, .10
                 pos_hint: {'top': .2, 'right': .78}
                 font_size: '20sp'
@@ -465,7 +465,7 @@
                 on_press: root.manager.current = 'time_line'
 
             Button:
-                text: "[i]Back to search window![/i]"
+                text: "[i]Back To Search[/i]"
                 size_hint: .20, .1
                 pos_hint: {'top': .2, 'right': .38}
                 font_size: '20sp'
@@ -497,18 +497,18 @@
             bold: True
             markup: True
             size_hint: .20, .10
-            pos_hint: {'top': 1.0, 'right': .47}
+            pos_hint: {'top': 1.0, 'right': .55}
             font_size: '50sp'
             color: 1, .8, .4, .85
 
-        Label:
-            text: "TimeLine"
-            bold: True
-            markup: True
-            size_hint: .20, .10
-            pos_hint: {'top': 1.0, 'right': .7}
-            font_size: '50sp'
-            color: 1, .8, .4, .85
+        # Label:
+        #     text: "TimeLine"
+        #     bold: True
+        #     markup: True
+        #     size_hint: .20, .10
+        #     pos_hint: {'top': 1.0, 'right': .69}
+        #     font_size: '50sp'
+        #     color: 1, .8, .4, .85
 
         Label:
             text: "Year: "
@@ -536,7 +536,7 @@
             id: grid
             cols: 3
             col_force_default: True
-            col_default_width: 450
+            col_default_width: 430
 
             #row_force_default: True
             #row_default_height: 95
@@ -585,17 +585,7 @@
                 markup: True
                 bold: True
                 on_press: root.next_btn()
-        Button:
-            text: "Back to search"
-            size_hint: .12, .10
-            border : 0.4, 0.4,0.4, 0.4
-            background_normal: 'normal.png'
-            background_down: 'search.png'
-            background_color: 1, .8, .4, .85
-            pos_hint: {'top': 1., 'right': 1.}
-            font_size: '15sp'
-            bold: True
-            on_press:  root.manager.current = 'search'
+
 
 
 
