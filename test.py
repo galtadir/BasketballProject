@@ -9,6 +9,12 @@ from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
+from kivy.graphics import *
+from kivy.animation import Animation,AnimationTransition
+
+from kivy.clock import Clock
+from kivy.properties import ListProperty
+from kivy.core.window import Window
 
 import WikiPage
 
@@ -49,6 +55,7 @@ class SearchWindow(Screen,RelativeLayout):
                     self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
                     self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
                     self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
+                    self.manager.get_screen('time_line').player_name = page.name
                     self.manager.get_screen('time_line').index = 0
                     self.manager.get_screen('time_line').insert_current_year()
                     self.manager.current = "player"
@@ -100,8 +107,25 @@ class PlayerScreen(Screen,GridLayout):
         # print(self.manager.page.dict_by_year)
         # self.manager.current='search'
 
+class LineEllipse1:
+    pass
+class ClockRect(Widget):
+    velocity = ListProperty([10, 15])
 
+    def __init__(self, **kwargs):
+        super(ClockRect, self).__init__(**kwargs)
+        Clock.schedule_interval(self.update, 1 / 60.)
+
+    def update(self, *args):
+        self.x += self.velocity[0]
+        self.y += self.velocity[1]
+
+        if self.x < 0 or (self.x + self.width) > Window.width:
+            self.velocity[0] *= -1
+        if self.y < 0 or (self.y + self.height) > Window.height:
+            self.velocity[1] *= -1
 class TimeLineScreen(Screen,Widget):
+    player_name=StringProperty("")
     player_dict =DictProperty({})
     prev_year = StringProperty("")
     curr_year = StringProperty("")
@@ -140,9 +164,33 @@ class TimeLineScreen(Screen,Widget):
             self.insert_current_year()
 
     def insert_current_year(self):
+
+
+
+        # with self.canvas:
+        #     # Add a red color
+        #     Color(1., 0, 0)
+        #
+        #     # Add a rectangle
+        rec=Rectangle(pos=(10, 10), size=(500, 500))
+        #
+        #     Line(pos=(10, 10), size=(500, 500))
         self.ids.grid.clear_widgets()
-        label = Label(text=self.curr_year)
-        self.ids.grid.add_widget(label)
+        # label = Label(text=self.curr_year,pos_hint={'top':1.0, 'right':.7})
+        # self.ids.grid.add_widget(label)
+        # print(self.curr_year)
+        # grid = GridLayout()
+        # grid.add_widget(ClockRect())
+        clock=LineEllipse1()
+        anim = Animation(pos=(100,100),duration=5)
+        anim.start(clock)
+        # self.ids.grid.add_widget(anim)
+
+        # self.ig = InstructionGroup()
+        # self.line = Line(points=[100, 200, 300, 400])
+        # self.ig.add(self.line)
+        # self.canvas.add(self.ig)
+
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
             label = Label(text = achievement)
@@ -153,6 +201,8 @@ class Manager(ScreenManager):
     page = None
 
 
+class Line(Widget):
+    pass
 
 
 class TestApp(App):
