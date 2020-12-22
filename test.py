@@ -55,6 +55,7 @@ class SearchWindow(Screen,RelativeLayout):
                     self.manager.get_screen("player").update_details()
                     self.manager.get_screen('time_line').player_dict = page.dict_by_year
                     self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
+                    self.manager.get_screen('time_line').prev_year = "start"
                     self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
                     self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
                     self.manager.get_screen('time_line').player_name = page.name
@@ -109,23 +110,7 @@ class PlayerScreen(Screen,GridLayout):
         # print(self.manager.page.dict_by_year)
         # self.manager.current='search'
 
-class LineEllipse1:
-    pass
-class ClockRect(Widget):
-    velocity = ListProperty([10, 15])
 
-    def __init__(self, **kwargs):
-        super(ClockRect, self).__init__(**kwargs)
-        Clock.schedule_interval(self.update, 1 / 60.)
-
-    def update(self, *args):
-        self.x += self.velocity[0]
-        self.y += self.velocity[1]
-
-        if self.x < 0 or (self.x + self.width) > Window.width:
-            self.velocity[0] *= -1
-        if self.y < 0 or (self.y + self.height) > Window.height:
-            self.velocity[1] *= -1
 class TimeLineScreen(Screen,Widget):
     player_name=StringProperty("")
     player_dict =DictProperty({})
@@ -149,7 +134,7 @@ class TimeLineScreen(Screen,Widget):
             self.next_year = self.curr_year
             self.curr_year = self.prev_year
             if self.index==0:
-                self.prev_year = ""
+                self.prev_year = "start"
             else:
                 self.prev_year = self.keys[self.index-1]
             self.insert_current_year()
@@ -160,7 +145,7 @@ class TimeLineScreen(Screen,Widget):
             self.prev_year = self.curr_year
             self.curr_year = self.next_year
             if self.index==len(self.keys)-1:
-                self.next_year = ""
+                self.next_year = "end"
             else:
                 self.next_year= self.keys[self.index+1]
             self.insert_current_year()
@@ -168,19 +153,33 @@ class TimeLineScreen(Screen,Widget):
     def insert_current_year(self):
         grid = self.ids.grid
         grid.clear_widgets()
-
-
-
+        label1 = Label()
+        self.ids.grid.add_widget(label1)
+        label2 = Label()
+        self.ids.grid.add_widget(label2)
+        label3 = Label()
+        self.ids.grid.add_widget(label3)
+        label7 = Label()
+        self.ids.grid.add_widget(label7)
+        label8 = Label()
+        self.ids.grid.add_widget(label8)
+        label9 = Label()
+        self.ids.grid.add_widget(label9)
 
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
             new_grid = GridLayout(cols=1)
             new_grid.add_widget(Label(text = achievement, bold=True))
-            new_grid.add_widget(Image(source="atl.png"))
+            new_grid.add_widget(Image(source="por.png"))
             self.ids.grid.add_widget(new_grid)
             # self.ids.grid.add_widget(Label(text = achievement))
 
-
+        label4 = Label()
+        self.ids.grid.add_widget(label4)
+        label5 = Label()
+        self.ids.grid.add_widget(label5)
+        label6 = Label()
+        self.ids.grid.add_widget(label6)
 
         # with self.canvas:
         #     # Add a red color
