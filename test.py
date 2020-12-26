@@ -22,6 +22,7 @@ import WikiPage
 
 Builder.load_file("test.kv")
 
+#this class display the search window
 class SearchWindow(Screen,RelativeLayout):
     search_by_url = ObjectProperty(None)
     search_by_name_first = ObjectProperty(None)
@@ -47,34 +48,41 @@ class SearchWindow(Screen,RelativeLayout):
             self.search_by_name_first.text = ""
             self.search_by_name_last.text = ""
         if url != "":
+            #import the page of the player
             page = WikiPage.WikiPage(url)
             if page.check_url():
                 try:
+                    #init deatils of the player, parsing his all championship Trophies and etc
                     page.init_detail()
                     self.manager.page = page
+                    #update_details  of the player as date of birth, place of birth,high school, college
                     self.manager.get_screen("player").update_details()
                     self.manager.get_screen('time_line').player_dict = page.dict_by_year
                     self.manager.get_screen('time_line').keys = self.manager.get_screen('time_line').player_dict.keys()
                     self.manager.get_screen('time_line').prev_year = "Back To Player Page"
                     self.manager.get_screen('time_line').curr_year = self.manager.get_screen('time_line').keys[0]
                     self.manager.get_screen('time_line').next_year = self.manager.get_screen('time_line').keys[1]
-                    self.manager.get_screen('time_line').player_name = page.name + " TimeLine"
+                    self.manager.get_screen('time_line').player_name = page.name + " Timeline"
                     self.manager.get_screen('time_line').index = 0
                     self.manager.get_screen('time_line').insert_current_year()
                     self.manager.current = "player"
                 except:
+                    #exception if the player is not exist
                     layout.add_widget(Label(text='Player Not Found'))
                     layout.add_widget(close_button)
                     popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
                     popup.open()
                     close_button.bind(on_press=popup.dismiss)
             else:
+                #pop up to the user  if the player is not exist
                 layout.add_widget(Label(text='Player Not Found'))
                 layout.add_widget(close_button)
                 popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
                 popup.open()
                 close_button.bind(on_press=popup.dismiss)
         else:
+            # pop up to the user  if the player is not exist
+
             layout.add_widget(Label(text='Please Enter Valid Input'))
             layout.add_widget(close_button)
             popup = Popup(title='Search Error', content=layout, size_hint=(None, None), size=(500, 500))
@@ -82,6 +90,7 @@ class SearchWindow(Screen,RelativeLayout):
             close_button.bind(on_press=popup.dismiss)
 
 
+#this class display the player window with his detailes
 
 class PlayerScreen(Screen,GridLayout):
     player_name = StringProperty('')
@@ -91,7 +100,7 @@ class PlayerScreen(Screen,GridLayout):
     high_school = StringProperty('')
     college = StringProperty('')
 
-
+    #this functiom update player's details
     def update_details(self):
         self.player_name = self.manager.page.name
         self.photo_url = "http:" + self.manager.page.photo_url
@@ -100,16 +109,17 @@ class PlayerScreen(Screen,GridLayout):
         self.high_school = self.manager.page.high_school
         self.college = self.manager.page.college
 
-    def btn(self):
-        print(self.player_name)
-        print(self.photo_url)
-        print(self.born_place)
-        print(self.born_date)
-        print(self.high_school)
-        print(self.college)
-        # print(self.manager.page.dict_by_year)
-        # self.manager.current='search'
+    # def btn(self):
+    #     print(self.player_name)
+    #     print(self.photo_url)
+    #     print(self.born_place)
+    #     print(self.born_date)
+    #     print(self.high_school)
+    #     print(self.college)
+    #     # print(self.manager.page.dict_by_year)
+    #     # self.manager.current='search'
 
+#this class display the timeline window of the player
 
 class TimeLineScreen(Screen,Widget):
     player_name=StringProperty("")
@@ -122,14 +132,14 @@ class TimeLineScreen(Screen,Widget):
 
 
 
-    def btn(self):
-        print(self.player_dict)
-        print(self.keys)
-        print(self.curr_year)
-        print(self.next_year)
-        label = Label(text=str(self.index))
-        self.ids.grid.add_widget(label)
-
+    # def btn(self):
+    #     print(self.player_dict)
+    #     print(self.keys)
+    #     print(self.curr_year)
+    #     print(self.next_year)
+    #     label = Label(text=str(self.index))
+    #     self.ids.grid.add_widget(label)
+    #this function moves the timeline to the previous year of the timeline
     def prev_btn(self):
         if not self.index==0:
             self.index = self.index-1
@@ -143,6 +153,7 @@ class TimeLineScreen(Screen,Widget):
         else:
             self.manager.current = 'player'
 
+    #this function moves the timeline to the next year of the timeline
     def next_btn(self):
         if not self.index==len(self.keys)-1:
             self.index = self.index+1
@@ -155,10 +166,11 @@ class TimeLineScreen(Screen,Widget):
             self.insert_current_year()
         else:
             self.manager.current = 'search'
-
+    #this function insert all the player's achievments to the timeline
     def insert_current_year(self):
         grid = self.ids.grid
         grid.clear_widgets()
+        #creating a dictionary of the champio
         photo_dict={}
         photo_dict["50–40–90 club"] = "50–40–90 club.jpg"
         photo_dict["All-NBA First Team"] = "All-NBA First Team.jpg"
@@ -208,7 +220,7 @@ class TimeLineScreen(Screen,Widget):
 
 
 
-
+        #adding empty labels
         label1 = Label()
         self.ids.grid.add_widget(label1)
         label2 = Label()
@@ -222,6 +234,7 @@ class TimeLineScreen(Screen,Widget):
         label9 = Label()
         self.ids.grid.add_widget(label9)
 
+        #display the achivments of the player
         achievements = self.player_dict[self.curr_year]
         for achievement in achievements:
             for_time_line = achievement.rstrip()
@@ -248,38 +261,13 @@ class TimeLineScreen(Screen,Widget):
             # new_grid.add_widget(Image(source="atl.png"))
             self.ids.grid.add_widget(new_grid)
             # self.ids.grid.add_widget(Label(text = achievement))
-
+        #add empty labels
         label4 = Label()
         self.ids.grid.add_widget(label4)
         label5 = Label()
         self.ids.grid.add_widget(label5)
         label6 = Label()
         self.ids.grid.add_widget(label6)
-
-        # with self.canvas:
-        #     # Add a red color
-        #     Color(1., 0, 0)
-        #
-        #     # Add a rectangle
-        # rec=Rectangle(pos=(10, 10), size=(500, 500))
-        #
-        #     Line(pos=(10, 10), size=(500, 500))
-        # label = Label(text=self.curr_year,pos_hint={'top':1.0, 'right':.7})
-        # self.ids.grid.add_widget(label)
-        # print(self.curr_year)
-        # grid = GridLayout()
-        # grid.add_widget(ClockRect())
-        # clock=LineEllipse1()
-        # anim = Animation(pos=(100,100),duration=5)
-        # anim.start(clock)
-        # self.ids.grid.add_widget(anim)
-
-        # self.ig = InstructionGroup()
-        # self.line = Line(points=[100, 200, 300, 400])
-        # self.ig.add(self.line)
-        # self.canvas.add(self.ig)
-
-
 
 
 class Manager(ScreenManager):
