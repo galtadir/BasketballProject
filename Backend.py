@@ -120,12 +120,6 @@ class WikiPage:
         return self.dict_by_year
         return 0
 
-    def print(self):
-        print("name",self.name)
-        print("photo_url", self.photo_url)
-        print("born_place", self.born_place)
-        print("born_date", self.born_date)
-        print("high_school", self.high_school)
-        print("college", self.college)
-
+lebron=WikiPage("https://en.wikipedia.org/wiki/LeBron_James")
+lebron.init_detail()
 
