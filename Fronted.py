@@ -30,7 +30,7 @@ class SearchWindow(Screen,RelativeLayout):
 
     # sm = ScreenManager()
 
-    # button for getting the recommendetions
+    # button for getting the player detailes
     def btn(self):
         close_button = Button(text="close")
         layout = GridLayout(cols=1)
@@ -109,15 +109,7 @@ class PlayerScreen(Screen,GridLayout):
         self.high_school = self.manager.page.high_school
         self.college = self.manager.page.college
 
-    # def btn(self):
-    #     print(self.player_name)
-    #     print(self.photo_url)
-    #     print(self.born_place)
-    #     print(self.born_date)
-    #     print(self.high_school)
-    #     print(self.college)
-    #     # print(self.manager.page.dict_by_year)
-    #     # self.manager.current='search'
+
 
 #this class display the timeline window of the player
 
@@ -130,15 +122,6 @@ class TimeLineScreen(Screen,Widget):
     keys =  ListProperty([])
     index = 0
 
-
-
-    # def btn(self):
-    #     print(self.player_dict)
-    #     print(self.keys)
-    #     print(self.curr_year)
-    #     print(self.next_year)
-    #     label = Label(text=str(self.index))
-    #     self.ids.grid.add_widget(label)
     #this function moves the timeline to the previous year of the timeline
     def prev_btn(self):
         if not self.index==0:
@@ -172,9 +155,9 @@ class TimeLineScreen(Screen,Widget):
         grid.clear_widgets()
         #creating a dictionary of the champio
         photo_dict={}
-        photo_dict["50–40–90 club"] = "images/50–40–90 club.jpg"
-        photo_dict["All-NBA First Team"] = "images/All-NBA First Team.jpg"
-        photo_dict["All-NBA Second Team"] = "images/All-NBA Second Team .png"
+        photo_dict["50–40–90 club"] = "images/504090 club.jpg"
+        photo_dict["All-NBA First Team"] = "images/AllNBA First Team.jpg"
+        photo_dict["All-NBA Second Team"] = "images/AllNBA Second Team .png"
         photo_dict["Arrived to Atlanta Hawks"] = "images/atl.png"
         photo_dict["Arrived to Brooklyn Nets"] = "images/bkn.png"
         photo_dict["Arrived to Boston Celtics"] = "images/bos.png"
@@ -206,10 +189,10 @@ class TimeLineScreen(Screen,Widget):
         photo_dict["Arrived to Utah Jazz"] = "images/utah.png"
         photo_dict["Arrived to Washington Wizards"] = "images/wsh.png"
 
-        photo_dict["NBA All-Defensive First Team"] = "images/NBA All-Defensive First Team.jpg"
-        photo_dict["NBA All-Defensive Second Team"] = "images/NBA All-Defensive Second Team.jpg"
+        photo_dict["NBA All-Defensive First Team"] = "images/NBA AllDefensive First Team.jpg"
+        photo_dict["NBA All-Defensive Second Team"] = "images/NBA AllDefensive Second Team.jpg"
         photo_dict["NBA All-Rookie First Team"] = "images/NBA All-Rookie First Team.jpg"
-        photo_dict["NBA All-Star"] = "images/NBA All-Star.png"
+        photo_dict["NBA All-Star"] = "images/NBA AllStar.png"
         photo_dict["NBA assists leader"] = "images/NBA assists leader.jpg"
         photo_dict["McDonald's All-American Game MVP"] = "images/NBA Most Valuable Player.jpg"
         photo_dict["NBA All-Star Game MVP"] = "images/NBA Most Valuable Player.jpg"
