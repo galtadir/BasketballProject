@@ -18,9 +18,9 @@ from kivy.core.window import Window
 from kivy.uix.image import Image
 
 
-import WikiPage
+import Backend
 
-Builder.load_file("test.kv")
+Builder.load_file("Fronted.kv")
 
 #this class display the search window
 class SearchWindow(Screen,RelativeLayout):
@@ -48,8 +48,8 @@ class SearchWindow(Screen,RelativeLayout):
             self.search_by_name_first.text = ""
             self.search_by_name_last.text = ""
         if url != "":
+            page = Backend.WikiPage(url)
             #import the page of the player
-            page = WikiPage.WikiPage(url)
             if page.check_url():
                 try:
                     #init deatils of the player, parsing his all championship Trophies and etc
